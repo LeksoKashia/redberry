@@ -1,0 +1,21 @@
+<section class="main">
+  <div class="hero">
+    <h1 class="title">
+      ბლოგი
+    </h1>
+
+    <figure>
+      <img src="../../../assets/Blog-1024x355 1.png" alt="">
+    </figure>
+  </div>
+
+
+  <div class="categories">
+    <div *ngFor="let category of categories; let i = index">
+      <button [ngStyle]="getCategoryStyles(category)" class="category button-{{i+1}}"
+        (click)="filter(category)">{{category.title}}</button>
+    </div>
+  </div>
+
+
+</section>

@@ -1,0 +1,31 @@
+.main{
+  margin-top: 72px;
+}
+
+.hero{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.title{
+  font-size: 5rem;
+  font-weight: bolder;
+  line-height: 72px;
+}
+
+.categories{
+  margin-top:70px ;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.category{
+  border: 2px solid transparent;
+  padding: 8px 16px;
+  border-radius: 30px;
+  box-sizing: border-box;
+}
