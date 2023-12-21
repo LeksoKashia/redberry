@@ -9,7 +9,7 @@ import { ApiResponse } from '../models/api-response.model';
 export class BlogsService {
 
   private apiUrl = 'https://api.blog.redberryinternship.ge/api/categories';
-  private token = '592072cfb7e716e008df6afa4edca3d8c646db5222e97b2270d074329d197e9d';
+  private token = 'f8481d3c42fe193d45747b1577c74befca5239b078330b7c28b1efe0b2c0c553';
 
   constructor(private http: HttpClient) {}
 

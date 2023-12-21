@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { MainSectionComponent } from './components/main-section/main-section.component';
+import { LoginModalComponent } from './components/modals/login-modal/login-modal.component';
+import { SuccessModalComponent } from './components/modals/success-modal/success-modal.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { MainSectionComponent } from './components/main-section/main-section.com
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    MainSectionComponent
+    MainSectionComponent,
+    LoginModalComponent,
+    SuccessModalComponent
   ],
   imports: [
     BrowserModule,
