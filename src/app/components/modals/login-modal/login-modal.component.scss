@@ -1,14 +1,67 @@
 .modal-content{
   width: 480px;
-  height: 300px;
+  height: 272px;
+  position: relative;
 }
 
 
 .modal-title{
-  margin-top: 30px;
+  margin-top: 40px;
   text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  margin-bottom: 35px;
 }
 
+
+.close{
+  position: absolute;
+  right: 25px;
+  top: 10px;
+  font-size: 30px;
+  text-decoration: none;
+  color: rgba(26, 26, 31, 1);
+  font-weight: 100;
+  
+}
+
+.loginForm{
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  margin: 0 auto;
+  gap: 7px;
+  margin-bottom: 20px;
+}
+
+.login{
+  margin: 0 auto;
+  width: 85%;
+  background-color: rgba(93, 55, 243, 1);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  border: 0;
+  color: white;
+}
+
+#name{
+  border-radius: 12px;
+  border: 1px solid rgba(93, 55, 243, 0.812); 
+  padding: 10px;
+  background-color: rgb(243, 242, 250);
+}
+#name:hover{
+  border: 1px solid rgba(93, 55, 243, 1); 
+
+}
+
+.elfost{
+  font-weight: 500;
+  font-size: 14px;
+}
 
 // .darkModal{
 //   background-color: rgba(37, 37, 37, 1);
