@@ -1,5 +1,6 @@
+@import url("https://free.bboxtype.com/embedfonts/?family=FiraGO:400,500,700"); 
 .main{
-  margin-top: 72px;
+  margin-top: 164px;
 }
 
 .hero{
@@ -10,7 +11,8 @@
 
 .title{
   font-size: 5rem;
-  font-weight: bolder;
+  font-family: "FiraGO";
+  font-weight: 700;
   line-height: 72px;
 }
 

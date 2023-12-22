@@ -9,7 +9,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { MainSectionComponent } from './components/main-section/main-section.component';
 import { LoginModalComponent } from './components/modals/login-modal/login-modal.component';
-import { SuccessModalComponent } from './components/modals/success-modal/success-modal.component';
+import { BlogListComponent } from './components/blog-list/blog-list.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { BlogDetailsComponent } from './components/blog-details/blog-details.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { SuccessModalComponent } from './components/modals/success-modal/success
     HomeComponent,
     MainSectionComponent,
     LoginModalComponent,
-    SuccessModalComponent
+    BlogListComponent,
+    BlogComponent,
+    BlogDetailsComponent
   ],
   imports: [
     BrowserModule,

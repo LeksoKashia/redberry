@@ -1,3 +1,10 @@
+header{
+  position: fixed;
+  top: 0;
+  z-index: 1000; 
+  width: 100%;
+}
+
 nav{
   display: flex;
   align-items: center;
@@ -8,6 +15,7 @@ nav{
 
 figure{
   margin: 0;
+  cursor: pointer;
 }
 
 button{

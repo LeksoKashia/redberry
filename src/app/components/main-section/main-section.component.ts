@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import { Category } from 'src/app/models/categories.model';
+import { Category } from 'src/app/models/category';
 import { BlogsService } from 'src/app/service/blogs.service';
 
 @Component({
