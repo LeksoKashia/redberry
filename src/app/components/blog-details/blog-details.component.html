@@ -29,7 +29,8 @@
   <div class="simillar-top">
     <h1 class="simillar">მსგავსი სტატიები</h1>
     <div class="arrows">
-      <a href="" class="arrow" style="margin-right: 22px;">
+      <a class="arrow" style="margin-right: 22px;" (click)="decreaseSlider()"
+        [ngClass]="{ 'active': sliderBlogs[count-1], 'inactive': !sliderBlogs[count-1]}">
         <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M2 9C2.55228 9 3 8.55228 3 8C3 7.44772 2.55228 7 2 7L2 9ZM1.19289 7.29289C0.802369 7.68342 0.802369 8.31658 1.19289 8.70711L7.55685 15.0711C7.94738 15.4616 8.58054 15.4616 8.97107 15.0711C9.36159 14.6805 9.36159 14.0474 8.97107 13.6569L3.31421 8L8.97107 2.34315C9.36159 1.95262 9.36159 1.31946 8.97107 0.928932C8.58054 0.538407 7.94738 0.538407 7.55685 0.928932L1.19289 7.29289ZM2 7L1.9 7L1.9 9L2 9L2 7Z"
@@ -38,7 +39,8 @@
 
       </a>
 
-      <a href="" class="arrow">
+      <a class="arrow" (click)="increaseSlider()"
+        [ngClass]="{ 'active': sliderBlogs[count+1], 'inactive': !sliderBlogs[count+1]}">
         <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M8 7C7.44772 7 7 7.44772 7 8C7 8.55228 7.44772 9 8 9L8 7ZM8.80711 8.70711C9.19763 8.31658 9.19763 7.68342 8.80711 7.29289L2.44314 0.928933C2.05262 0.538409 1.41946 0.538409 1.02893 0.928933C0.638407 1.31946 0.638407 1.95262 1.02893 2.34315L6.68579 8L1.02893 13.6569C0.638409 14.0474 0.638409 14.6805 1.02893 15.0711C1.41946 15.4616 2.05262 15.4616 2.44315 15.0711L8.80711 8.70711ZM8 9L8.1 9L8.1 7L8 7L8 9Z"
@@ -52,7 +54,7 @@
 
 
   <div class="blog-list">
-    <app-blog-list [blogs]="simillarBlogs"></app-blog-list>
+    <app-blog-list [blogs]="sliderBlogs[count]"></app-blog-list>
   </div>
 
 </div>

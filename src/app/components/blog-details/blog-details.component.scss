@@ -94,3 +94,13 @@
   padding: 12px 16px;
   border-radius: 24px;
 }
+
+
+.active{
+  background-color: rgba(93, 55, 243, 1);
+}
+
+.inactive{
+  pointer-events: none;
+  cursor: not-allowed;
+}
