@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { BlogsService } from 'src/app/service/blogs.service';
 
@@ -9,8 +9,13 @@ import { BlogsService } from 'src/app/service/blogs.service';
 })
 export class MainSectionComponent implements OnInit{
 
+  @Output() selectedCategories = new EventEmitter<number[]>();
+
+  public selectedCats : number[] = [];
   public categories: Category[] = [];
   public categoryIds: number[] = [];
+
+
 
 
   constructor(private blogService: BlogsService, private el: ElementRef, private renderer: Renderer2) {}
@@ -36,8 +41,15 @@ export class MainSectionComponent implements OnInit{
   }
 
   filter(category: Category){
-    console.log(this.categoryIds);
-    console.log(this.categoryIds.includes(category.id));
+    if(this.selectedCats.includes(category.id)){
+      const indexRemove = this.selectedCats.indexOf(category.id);     
+      this.selectedCats.splice(indexRemove, 1);
+      this.selectedCategories.emit(this.selectedCats)
+    }else{
+      this.selectedCats.push(category.id);
+      this.selectedCategories.emit(this.selectedCats)
+    }
+ 
     
     if (this.categoryIds.includes(category.id)) {
       const selectedButton = this.el.nativeElement.querySelector(`.button-${category.id}`);
