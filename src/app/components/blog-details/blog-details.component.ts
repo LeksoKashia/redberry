@@ -104,19 +104,19 @@ export class BlogDetailsComponent implements OnInit {
     for (let index = 0; index < simillarBlogs.length; index++) {
         newArr.push(simillarBlogs[index])
         count++;
-        if(mainCount <= 2){
+        if(mainCount <= 3){
             if (count === mainCount){
 
               this.sliderBlogs.push(newArr);
             }
-        }else if(mainCount % 2 == 0){
-            if (count === 2){
+        }else if(mainCount % 3 == 0){
+            if (count === 3){
                 this.sliderBlogs.push(newArr);
                 newArr = [];
                 count = 0;
             }
         }else{
-            if (count === 2 ){
+            if (count === 3){
                 console.log(index)
                 this.sliderBlogs.push(newArr);
                 newArr = [];
