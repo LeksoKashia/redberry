@@ -1,5 +1,3 @@
-import { Category } from "./categories.model";
-
-export interface ApiResponse {
-  data: Category[];
+export interface ApiResponse<T> {
+  data: T;
 }
