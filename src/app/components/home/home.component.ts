@@ -7,38 +7,45 @@ import { BlogsService } from 'src/app/service/blogs.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit{
-
+export class HomeComponent implements OnInit {
   public blogs: Blog[] = [];
-
   public displayBlogs: Blog[] = [];
+  public selectedCategories: string[] = [];
 
-  constructor(private blogService: BlogsService){}
+  constructor(private blogService: BlogsService) {}
+
   ngOnInit(): void {
     this.blogService.getBlogs().subscribe(
       (response) => {
-        this.blogs = response.data
+        this.blogs = response.data;
         this.displayBlogs = this.blogs;
-        console.log(this.blogs);
+
+        // Call the filtering logic after fetching the blogs
+        this.filterBlogsBasedOnCategories();
       },
       (error) => {
         console.error(error);
       }
     );
-    
   }
 
-  filter(categories: number[]){
-    if(categories.length > 0){
-      this.displayBlogs = this.blogs.filter(blog =>{
-        return blog.categories.some(category => categories.includes(category.id));
-      })
-    }else{
-      console.log("kaira");
-      
-      this.displayBlogs = this.blogs
+  onSelectedCategoriesChanged(categories: string[]): void {
+    // Handle the selected categories change here
+    console.log('Selected Categories:', categories);
+
+    // Update the selected categories
+    this.selectedCategories = categories;
+    this.filterBlogsBasedOnCategories();
+  }
+
+  private filterBlogsBasedOnCategories(): void {
+    if (this.blogs.length > 0 && this.selectedCategories.length > 0) {
+      this.displayBlogs = this.blogs.filter((blog) =>
+        blog.categories.some((category) => this.selectedCategories.includes(category.title))
+      );
+    } else {
+      this.displayBlogs = this.blogs;
     }
-   
   }
 
 
@@ -53,4 +60,6 @@ export class HomeComponent implements OnInit{
     container?.appendChild(button);
     button.click();
   }
+
+  
 }

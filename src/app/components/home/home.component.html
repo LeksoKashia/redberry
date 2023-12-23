@@ -1,6 +1,6 @@
 <app-header (loginClicked)="openModal()"></app-header>
 <app-login-modal></app-login-modal>
-<app-main-section (selectedCategories)="filter($event)"></app-main-section>
+<app-main-section (selectedCategoriesChanged)="onSelectedCategoriesChanged($event)"></app-main-section>
 <div class="blog-list">
   <app-blog-list [blogs]="displayBlogs"></app-blog-list>
 </div>

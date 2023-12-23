@@ -12,8 +12,10 @@
 
   <div class="categories">
     <div *ngFor="let category of categories; let i = index">
-      <button [ngStyle]="getCategoryStyles(category)" class="category button-{{i+1}}"
-        (click)="filter(category)">{{category.title}}</button>
+      <button [ngStyle]="getCategoryStyles(category)" class="category button-{{i + 1}}"
+        (click)="toggleCategory(category)">
+        {{ category.title }}
+      </button>
     </div>
   </div>
 

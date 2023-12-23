@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { BlogsService } from 'src/app/service/blogs.service';
 
@@ -7,24 +7,25 @@ import { BlogsService } from 'src/app/service/blogs.service';
   templateUrl: './main-section.component.html',
   styleUrls: ['./main-section.component.scss']
 })
-export class MainSectionComponent implements OnInit{
+export class MainSectionComponent implements OnInit {
+  @Output() selectedCategoriesChanged: EventEmitter<string[]> = new EventEmitter<string[]>();
 
-  @Output() selectedCategories = new EventEmitter<number[]>();
-
-  public selectedCats : number[] = [];
   public categories: Category[] = [];
-  public categoryIds: number[] = [];
+  public selectedCategories: string[] = [];
 
-
-
-
-  constructor(private blogService: BlogsService, private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private blogService: BlogsService) {}
 
   ngOnInit(): void {
     this.blogService.getCategories().subscribe(
       (response) => {
         this.categories = response.data;
-        console.log(this.categories);
+
+        // Load selected categories from local storage
+        const storedCategories = localStorage.getItem('selectedCategories');
+        if (storedCategories) {
+          this.selectedCategories = JSON.parse(storedCategories);
+          this.emitSelectedCategories();
+        }
       },
       (error) => {
         console.error(error);
@@ -32,37 +33,37 @@ export class MainSectionComponent implements OnInit{
     );
   }
 
-
   getCategoryStyles(category: Category): any {
     return {
       'background-color': category.background_color,
-      'color': category.text_color
+      'color': category.text_color,
+      'border': this.isSelected(category) ? '2px solid black' : '2px solid transparent'
     };
   }
 
-  filter(category: Category){
-    if(this.selectedCats.includes(category.id)){
-      const indexRemove = this.selectedCats.indexOf(category.id);     
-      this.selectedCats.splice(indexRemove, 1);
-      this.selectedCategories.emit(this.selectedCats)
-    }else{
-      this.selectedCats.push(category.id);
-      this.selectedCategories.emit(this.selectedCats)
-    }
- 
-    
-    if (this.categoryIds.includes(category.id)) {
-      const selectedButton = this.el.nativeElement.querySelector(`.button-${category.id}`);
-      this.renderer.setStyle(selectedButton, 'border', '2px solid transparent');
-      const indexToRemove = this.categoryIds.indexOf(category.id);
-      this.categoryIds.splice(indexToRemove, 1);
-
-    } else {
-      this.categoryIds.push(category.id);
-      const selectedButton = this.el.nativeElement.querySelector(`.button-${category.id}`);
-      this.renderer.setStyle(selectedButton, 'border', '2px solid black');
-    }
-
+  isSelected(category: Category): boolean {
+    return this.selectedCategories.includes(category.title);
   }
 
+  toggleCategory(category: Category): void {
+    const index = this.selectedCategories.indexOf(category.title);
+    if (index !== -1) {
+      // Remove category if already selected
+      this.selectedCategories.splice(index, 1);
+    } else {
+      // Add category if not selected
+      this.selectedCategories.push(category.title);
+    }
+
+    // Save selected categories to local storage
+    localStorage.setItem('selectedCategories', JSON.stringify(this.selectedCategories));
+
+    // Emit the updated selected categories
+    this.emitSelectedCategories();
+  }
+
+  private emitSelectedCategories(): void {
+    // Emit the selected categories to the parent component (HomeComponent)
+    this.selectedCategoriesChanged.emit(this.selectedCategories);
+  }
 }
