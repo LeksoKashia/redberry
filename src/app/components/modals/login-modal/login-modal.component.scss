@@ -56,8 +56,8 @@
 }
 
 .noerror{
-  border: 1px solid rgba(93, 55, 243, 0.812);
-  background-color: rgb(243, 242, 250);
+  border: 1px solid rgba(228, 227, 235, 1) ;
+  background-color: rgba(252, 252, 253, 1);
 }
 
 
@@ -109,3 +109,7 @@
   color: rgba(26, 26, 31, 1);
 }
 
+.focused {
+  border: 1px solid rgba(93, 55, 243, 0.812); /* Change the border color when focused */
+  background-color:rgba(247, 247, 255, 1) ; /* Change the background color when focused */
+}

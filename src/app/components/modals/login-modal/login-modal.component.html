@@ -17,6 +17,7 @@
         <form class="loginForm" [formGroup]="reactiveForm" (ngSubmit)="OnFormSubmitted()">
           <span class="elfost">ელ ფოსტა</span>
           <input type="text" name="name" id="name" placeholder="Example@redberry.ge" formControlName="email"
+            (focus)="onInputFocus()" (blur)="onInputBlur()" #myInput [ngClass]="{'focused': isInputFocused}"
             [class.error]="showError" [class.noerror]="!showError" />
           <span *ngIf="showError" class="error-message"> <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
               xmlns="http://www.w3.org/2000/svg">
