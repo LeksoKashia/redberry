@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, AfterViewChecked } from '@angular/core';
-import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { BlogsService } from 'src/app/service/blogs.service';
 
 @Component({
