@@ -7,10 +7,13 @@ import { Blog } from 'src/app/models/blog';
   templateUrl: './blog-list.component.html',
   styleUrls: ['./blog-list.component.scss']
 })
-export class BlogListComponent implements OnInit{
+export class BlogListComponent{
 
   @Input() blogs!: Blog[];
 
-  ngOnInit(): void {}
+
+  shouldApplyMargin(index: number): boolean {
+    return (index + 1) % 3 !== 0;
+  }
 
 }

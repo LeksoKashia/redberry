@@ -1,4 +1,5 @@
-import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, AfterViewChecked } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BlogsService } from 'src/app/service/blogs.service';
 
 @Component({
@@ -6,17 +7,19 @@ import { BlogsService } from 'src/app/service/blogs.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements AfterViewChecked{
-  @Output() loginClicked = new EventEmitter<void>();
-  public isAuthed : boolean = false;
 
-  constructor(private blogService: BlogsService){}
+export class HeaderComponent implements AfterViewChecked {
+  @Output() loginClicked = new EventEmitter<void>();
+  public isAuthed: boolean = false;
+
+  constructor(private blogService: BlogsService, private cdr: ChangeDetectorRef) {}
+
   ngAfterViewChecked(): void {
     this.isAuthed = this.blogService.isAuthed();
+    this.cdr.detectChanges();
   }
 
-
-  openModal(){
+  openModal() {
     this.loginClicked.emit();
   }
 }

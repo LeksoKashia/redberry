@@ -23,7 +23,6 @@
 
 }
 .blog-title{
-  height: 55px;
   font-size: 27px;
   line-height: 28px;
   word-break: break-all;
@@ -37,17 +36,10 @@
 
 
 
-.cats{
-  // display: flex;
-  // gap: 16px;
-  // flex-wrap: wrap;
-  height: 60px;
-  overflow-y: auto;
-}
-
 .cats button{
   margin-bottom: 21px;
   margin-right: 16px;
+  font-size: 12px;
 }
 
 .blog-desc{
@@ -78,4 +70,26 @@
 
 .details:hover .arrow path {
   fill: rgba(93, 55, 243, 0.716);
+}
+
+@media only screen and (max-width: 1700px) {
+  .blog-image{
+    height: 450px;
+  }
+}
+
+
+@media only screen and (max-width: 1500px) {
+  .blog-image{
+    height: 400px;
+  }
+
+
+}
+
+@media only screen and (max-width: 1300px) {
+  .blog-image{
+    height: 330px;
+  }
+
 }

@@ -9,15 +9,13 @@
     </figure>
   </div>
 
-
   <div class="categories">
-    <div *ngFor="let category of categories; let i = index">
-      <button [ngStyle]="getCategoryStyles(category)" class="category button-{{i + 1}}"
-        (click)="toggleCategory(category)">
-        {{ category.title }}
-      </button>
-    </div>
+    <button *ngFor="let category of categories; let i = index" [ngStyle]="getCategoryStyles(category)"
+      class="category button-{{i + 1}}" (click)="toggleCategory(category)">
+      {{ category.title }}
+    </button>
   </div>
+
 
 
 </section>
