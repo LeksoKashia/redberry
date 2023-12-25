@@ -31,5 +31,16 @@ export class BlogsService {
     return this.http.get<Blog>(`${this.apiUrl}/blogs/${blogId}`, { headers });
   }
 
+  login(email: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/login`,{ email }, { observe: 'response' })
+  }
+
+  isAuthed(){
+    const isAuthed = localStorage.getItem('isAuthed');
+    return JSON.parse(isAuthed)
+  }
+
+
+
 
 }

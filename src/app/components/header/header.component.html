@@ -4,6 +4,7 @@
       <img src="../../../assets/LOGO-02 3.png" alt="" routerLink="">
     </figure>
 
-    <button (click)="openModal()">შესვლა</button>
+    <button *ngIf="!isAuthed" (click)="openModal()">შესვლა</button>
+    <button *ngIf="isAuthed">ბლოგის დამატება</button>
   </nav>
 </header>

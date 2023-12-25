@@ -20,7 +20,6 @@ export class MainSectionComponent implements OnInit {
       (response) => {
         this.categories = response.data;
 
-        // Load selected categories from local storage
         const storedCategories = localStorage.getItem('selectedCategories');
         if (storedCategories) {
           this.selectedCategories = JSON.parse(storedCategories);
@@ -48,22 +47,20 @@ export class MainSectionComponent implements OnInit {
   toggleCategory(category: Category): void {
     const index = this.selectedCategories.indexOf(category.title);
     if (index !== -1) {
-      // Remove category if already selected
+
       this.selectedCategories.splice(index, 1);
     } else {
-      // Add category if not selected
+
       this.selectedCategories.push(category.title);
     }
 
-    // Save selected categories to local storage
+
     localStorage.setItem('selectedCategories', JSON.stringify(this.selectedCategories));
 
-    // Emit the updated selected categories
     this.emitSelectedCategories();
   }
 
   private emitSelectedCategories(): void {
-    // Emit the selected categories to the parent component (HomeComponent)
     this.selectedCategoriesChanged.emit(this.selectedCategories);
   }
 }

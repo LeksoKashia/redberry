@@ -45,6 +45,9 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    const isAuthed = localStorage.getItem('isAuthed');
+    console.log(JSON.parse(isAuthed));
+    
     this.route.params.subscribe((params) => {
       const blogId = +params['id'];
 
@@ -135,6 +138,19 @@ export class BlogDetailsComponent implements OnInit {
       'background-color': category.background_color,
       'color': category.text_color
     };
+  }
+
+
+  public openModal(): void {
+    const container = document.getElementById('blog-section');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#addEmployeeModal');
+
+    container?.appendChild(button);
+    button.click();
   }
 
 }

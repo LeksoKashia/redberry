@@ -1,8 +1,9 @@
 .modal-content{
   width: 480px;
-  height: 272px;
-  position: relative;
+  height: 300px;
+
 }
+
 
 
 .modal-title{
@@ -29,15 +30,15 @@
 .loginForm{
   display: flex;
   flex-direction: column;
-  width: 85%;
+  width: 90%;
   margin: 0 auto;
   gap: 7px;
   margin-bottom: 20px;
 }
 
-.login{
+.login , .proceed{
   margin: 0 auto;
-  width: 85%;
+  width: 100%;
   background-color: rgba(93, 55, 243, 1);
   padding: 10px 20px;
   border-radius: 8px;
@@ -49,31 +50,62 @@
 
 #name{
   border-radius: 12px;
-  border: 1px solid rgba(93, 55, 243, 0.812); 
   padding: 10px;
+  
+  outline: none;
+}
+
+.noerror{
+  border: 1px solid rgba(93, 55, 243, 0.812);
   background-color: rgb(243, 242, 250);
 }
-#name:hover{
-  border: 1px solid rgba(93, 55, 243, 1); 
 
-}
+
 
 .elfost{
   font-weight: 500;
   font-size: 14px;
 }
 
-// .darkModal{
-//   background-color: rgba(37, 37, 37, 1);
-// }
+.error-message{
+  height: 20px;
+  color: rgba(234, 25, 25, 1); 
+  font-size: 12px; 
+  font-weight: 400;
+  margin-bottom: 10px;
+}
 
-// .color{
-//   color: white;
-// }
+.error{
+  border: 1px solid rgba(234, 25, 25, 1); 
+  background-color: rgba(250, 242, 243, 1);
+}
 
-// @media only screen and (max-width: 400px) {
-//   #name{
-//     width: 300px;
-//   }
-  
-// }
+
+//success modal
+.flex-centered{
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-modal{
+  gap: 40px;
+  margin-top: 73px;
+}
+
+.success-modal-top{
+  gap: 16px;
+}
+
+.proceed{
+  width: 90%;
+}
+
+
+.success-login{
+  font-weight: 700;
+  font-size: 20px;
+  color: rgba(26, 26, 31, 1);
+}
+

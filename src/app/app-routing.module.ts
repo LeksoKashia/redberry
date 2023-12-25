@@ -5,6 +5,7 @@ import { BlogDetailsComponent } from './components/blog-details/blog-details.com
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'blog/:id', component: BlogDetailsComponent }
 
 

@@ -19,8 +19,6 @@ export class HomeComponent implements OnInit {
       (response) => {
         this.blogs = response.data;
         this.displayBlogs = this.blogs;
-
-        // Call the filtering logic after fetching the blogs
         this.filterBlogsBasedOnCategories();
       },
       (error) => {
@@ -30,10 +28,6 @@ export class HomeComponent implements OnInit {
   }
 
   onSelectedCategoriesChanged(categories: string[]): void {
-    // Handle the selected categories change here
-    console.log('Selected Categories:', categories);
-
-    // Update the selected categories
     this.selectedCategories = categories;
     this.filterBlogsBasedOnCategories();
   }

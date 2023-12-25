@@ -1,7 +1,7 @@
-<app-header></app-header>
+<app-header (loginClicked)="openModal()"></app-header>
+<app-login-modal></app-login-modal>
 
-
-<section class="blog-section">
+<section class="blog-section" id="blog-section">
   <img src="{{blog.image}}" alt="" class="blog-image">
 
   <div class="blog-div">
