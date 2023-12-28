@@ -82,7 +82,12 @@ export class BlogDetailsComponent implements OnInit {
     
     this.blogService.getBlogs().subscribe(
       (response) => {
-        this.allBlogs = response.data
+        this.allBlogs = response.data.filter(blog => {
+          const publishDate = new Date(blog.publish_date);
+          const currentDate = new Date();
+          return publishDate <= currentDate;
+        });
+  
         
         this.simillarBlogs = this.allBlogs.filter(blog => {
           return blog.categories.some(category => this.currentCategories.includes(category.id)) && blog.id != this.blog.id;

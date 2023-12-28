@@ -5,6 +5,6 @@
     </figure>
 
     <button *ngIf="!isAuthed" (click)="openModal()">შესვლა</button>
-    <button *ngIf="isAuthed">ბლოგის დამატება</button>
+    <button *ngIf="isAuthed" routerLink="/addBlog">დაამატე ბლოგი</button>
   </nav>
 </header>

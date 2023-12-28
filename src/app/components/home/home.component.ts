@@ -15,10 +15,19 @@ export class HomeComponent implements OnInit {
   constructor(private blogService: BlogsService) {}
 
   ngOnInit(): void {
+    console.log('Current Date:', new Date());
+  
     this.blogService.getBlogs().subscribe(
       (response) => {
-        this.blogs = response.data;
+        this.blogs = response.data.filter(blog => {
+          const publishDate = new Date(blog.publish_date);
+          const currentDate = new Date();
+          return publishDate <= currentDate;
+        });
+  
+        // Filter blogs based on the publish date condition
         this.displayBlogs = this.blogs;
+  
         this.filterBlogsBasedOnCategories();
       },
       (error) => {
@@ -26,6 +35,7 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+  
 
   onSelectedCategoriesChanged(categories: string[]): void {
     this.selectedCategories = categories;

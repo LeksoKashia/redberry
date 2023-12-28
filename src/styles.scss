@@ -2,10 +2,25 @@
 body{
   margin: 0;
   padding: 0;
-  background-color: rgba(243, 242, 250, 1);
+  background-color: rgba(251, 250, 255, 1);
   position: relative;
 }
 
 *{
     font-family: "FiraGO", sans-serif;
+}
+
+
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {  
+  background: rgb(218, 203, 203);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(177, 177, 191);
+  border-radius: 20px;
+  border: 1px solid rgb(177, 177, 191);
 }

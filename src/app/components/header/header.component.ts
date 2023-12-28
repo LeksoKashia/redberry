@@ -5,7 +5,7 @@ import { BlogsService } from 'src/app/service/blogs.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss', ]
 })
 
 export class HeaderComponent implements AfterViewChecked {

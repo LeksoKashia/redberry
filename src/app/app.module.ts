@@ -13,6 +13,7 @@ import { LoginModalComponent } from './components/modals/login-modal/login-modal
 import { BlogListComponent } from './components/blog-list/blog-list.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { BlogDetailsComponent } from './components/blog-details/blog-details.component';
+import { AddBlogComponent } from './components/add-blog/add-blog.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { BlogDetailsComponent } from './components/blog-details/blog-details.com
     LoginModalComponent,
     BlogListComponent,
     BlogComponent,
-    BlogDetailsComponent
+    BlogDetailsComponent,
+    AddBlogComponent
   ],
   imports: [
     BrowserModule,

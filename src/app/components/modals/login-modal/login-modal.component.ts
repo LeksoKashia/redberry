@@ -62,6 +62,7 @@ export class LoginModalComponent implements OnInit{
 
   onInputFocus() {
     this.isInputFocused = true;
+    this.showError = false
   }
 
   onInputBlur() {
