@@ -10,8 +10,10 @@ import { Blog } from '../models/blog';
 })
 export class BlogsService {
 
+
   private apiUrl = 'https://api.blog.redberryinternship.ge/api';
   private token = '09e7fdf907bc3fcfb7a3b13c1f183759f5b64b00b2fb89c7be8437a64b3ae10d';
+
 
   constructor(private http: HttpClient) {}
 
@@ -35,10 +37,19 @@ export class BlogsService {
     return this.http.post<any>(`${this.apiUrl}/login`,{ email }, { observe: 'response' })
   }
 
+ 
+
   isAuthed(){
     const isAuthed = localStorage.getItem('isAuthed');
     return JSON.parse(isAuthed)
   }
+
+
+  addBlog(blog: any): Observable<any> {
+    const headers = { 'Authorization': `Bearer ${this.token}` };
+    return this.http.post<any>(`${this.apiUrl}/blogs`, blog, { headers });
+  }
+  
 
 
 
