@@ -7,7 +7,7 @@ import { BlogsService } from 'src/app/service/blogs.service';
 @Component({
   selector: 'app-add-blog',
   templateUrl: './add-blog.component.html',
-  styleUrls: ['./add-blog.component.scss', '../header/header.component.scss']
+  styleUrls: ['./add-blog.component.scss', '../header/header.component.scss', '../../../styles.scss']
 })
 export class AddBlogComponent implements OnInit{
   blog: any;
