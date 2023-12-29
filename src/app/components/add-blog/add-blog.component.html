@@ -119,6 +119,42 @@
           (blur)="addBlurDate()" [class.focused]="dateFocus" [class.success-input]="dateValidateSuccess">
       </div>
 
+
+      <div class="div-date">
+        <p class="input-title">კატეგორია *</p>
+        <div class="cats-box">
+          <div class="cats" style="gap: 8px;">
+            <span *ngIf="!isCategoriesVisible && selectedCategories.length == 0 "
+              style=" margin-top: 12px; margin-left: 5px; font-weight: 400; font-size: 14px; color: rgba(133, 133, 141, 1);">აირჩეით
+              კატეგორია</span>
+            <button type="button" style="height: 90%;" *ngFor="let selectedCategory of selectedCategories"
+              class="selected-category category" [ngStyle]="getCategoryStyles(selectedCategory)">
+              {{ selectedCategory.title }}
+              <span (click)="removeCategory(selectedCategory)" class="close-button" style="padding-left:5px;">x</span>
+            </button>
+          </div>
+
+          <a (click)="toggleCategories()" style="text-align: center;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M16.6004 7.45831L11.1671 12.8916C10.5254 13.5333 9.47539 13.5333 8.83372 12.8916L3.40039 7.45831"
+                stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+
+        </div>
+
+        <div class="categories-float" *ngIf="isCategoriesVisible">
+          <button type="button" *ngFor="let category of categories; let i = index" (click)="addCategory(category)"
+            [ngStyle]="getCategoryStyles(category)" class="category button-{{i + 1}}">
+            {{ category.title }}
+          </button>
+        </div>
+
+      </div>
+
+
+
     </div>
 
     <div class="title-author">
@@ -127,8 +163,8 @@
         <input type="text" formControlName="email" placeholder="Example@redberry.ge" (input)="validateEmail($event)"
           (focus)="addFocusEmail()" (blur)="addBlurEmail()" [class.focused]="emailFocus"
           [class.error-input]="emailDifferentError" [class.success-input]="emailDifferentSuccess">
-        <li style="height: 48px;" class="validation no-bullet" *ngIf="!emailError"></li>
-        <li style="height: 48px; color: rgba(234, 25, 25, 1);" class="validation no-bullet" *ngIf="emailError">
+        <li style="height: 20px;" class="validation no-bullet" *ngIf="!emailError"></li>
+        <li style="height: 20px; color: rgba(234, 25, 25, 1);" class="validation no-bullet" *ngIf="emailError">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="20" height="20" transform="translate(20 20) rotate(180)" fill="white" />
             <path

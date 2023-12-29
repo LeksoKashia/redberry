@@ -22,4 +22,19 @@ export class HeaderComponent implements AfterViewChecked {
   openModal() {
     this.loginClicked.emit();
   }
+
+  logout(){
+    localStorage.removeItem('isAuthed');
+    localStorage.removeItem('title');
+    localStorage.removeItem('description');
+    localStorage.removeItem('publish_date');
+    localStorage.removeItem('author');
+    localStorage.removeItem('email');
+    localStorage.removeItem('categories');
+    localStorage.removeItem('authorValidateSuccess');
+    localStorage.removeItem('titleValidateSuccess');
+    localStorage.removeItem('descValidateSuccess');
+    localStorage.removeItem('dateValidateSuccess');
+    localStorage.removeItem('emailValidateSuccess');
+  }
 }

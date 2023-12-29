@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Category } from 'src/app/models/category';
 
 import { BlogsService } from 'src/app/service/blogs.service';
 
@@ -15,10 +16,22 @@ export class AddBlogComponent implements OnInit{
   showUpload : boolean = true;
   imageName : string;
 
+  public categories: Category[] = [];
+
+  selectedCategories: Category[] = [];
 
   constructor(private blogService: BlogsService, private el: ElementRef) {}
 
   ngOnInit(): void {
+
+    this.blogService.getCategories().subscribe(
+      (response) => {
+        this.categories = response.data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
     this.addBlogForm = new FormGroup({
       title: new FormControl(localStorage.getItem('title') || ''),
       description: new FormControl(localStorage.getItem('description') || ''),
@@ -37,7 +50,37 @@ export class AddBlogComponent implements OnInit{
       localStorage.setItem('email', formValues.email);
       localStorage.setItem('categories', JSON.stringify(formValues.categories));
     });
+
+    this.authorValidateSuccess = JSON.parse(localStorage.getItem('authorValidateSuccess') || 'false');
+    this.titleValidateSuccess = JSON.parse(localStorage.getItem('titleValidateSuccess') || 'false');
+    this.descValidateSuccess = JSON.parse(localStorage.getItem('descValidateSuccess') || 'false');
+    this.dateValidateSuccess = JSON.parse(localStorage.getItem('dateValidateSuccess') || 'false');
+    this.emailValidateSuccess = JSON.parse(localStorage.getItem('emailValidateSuccess') || 'false');
+    this.photoValidateSuccess = JSON.parse('false');
   }
+
+  getCategoryStyles(category: Category): any {
+    return {
+      'background-color': category.background_color,
+      'color': category.text_color
+    };
+  }
+
+  categoryValidateSuccess : boolean = false;
+  addCategory(category: Category) {
+    if (!this.selectedCategories.some(c => c.id === category.id)) {
+      this.selectedCategories.push(category);
+      this.categoryValidateSuccess = true;
+    }
+  }
+  
+  removeCategory(category: Category) {
+    this.selectedCategories = this.selectedCategories.filter(c => c.id !== category.id);
+    if(this.selectedCategories.length == 0){
+      this.categoryValidateSuccess = false;
+    }
+  }
+  
   
   photoValidateSuccess: boolean = false;
   handleFileInput(event: any): void {
@@ -54,6 +97,9 @@ export class AddBlogComponent implements OnInit{
       this.photoValidateSuccess = true;
       
     }
+
+        localStorage.setItem('photoValidateSuccess', JSON.stringify(this.photoValidateSuccess));
+
   }
 
 
@@ -83,15 +129,17 @@ export class AddBlogComponent implements OnInit{
     }
 
    
-
+    console.log();
+    let arr = this.selectedCategories.map(category => category.id);
     this.blog = {
       title: this.addBlogForm.value.title,
       description: this.addBlogForm.value.description,
       publish_date: this.addBlogForm.value.publish_date,
       author: this.addBlogForm.value.author,
       email: this.addBlogForm.value.email,
-      categories: [1, 2, 3, 4],
+      categories: arr
     };
+    
     console.log(this.blog);
 
     let emailValue = this.blog.email;
@@ -111,6 +159,18 @@ export class AddBlogComponent implements OnInit{
 
     console.log(formData);
 
+    localStorage.removeItem('title');
+    localStorage.removeItem('description');
+    localStorage.removeItem('publish_date');
+    localStorage.removeItem('author');
+    localStorage.removeItem('email');
+    localStorage.removeItem('categories');
+    localStorage.removeItem('authorValidateSuccess');
+    localStorage.removeItem('titleValidateSuccess');
+    localStorage.removeItem('descValidateSuccess');
+    localStorage.removeItem('dateValidateSuccess');
+    localStorage.removeItem('emailValidateSuccess');
+
     this.blogService.addBlog(formData).subscribe(
       (response) => {
         console.log('Response status code:', response);
@@ -122,9 +182,9 @@ export class AddBlogComponent implements OnInit{
   }
 
   isButtonDisabled(): boolean {
-    return !(this.authorValidateSuccess && this.titleValidateSuccess && this.descValidateSuccess && this.dateValidateSuccess && this.emailValidateSuccess && this.photoValidateSuccess);
+    return !(this.authorValidateSuccess && this.titleValidateSuccess && this.descValidateSuccess && this.dateValidateSuccess  && this.photoValidateSuccess && this.categoryValidateSuccess);
   }
-///author validate
+
   authorFocus : Boolean;
   addFocusStyles() {
     this.authorFocus = true;
@@ -184,6 +244,9 @@ export class AddBlogComponent implements OnInit{
       this.authorValidateError = true;
       this.authorValidateSuccess = false;
     }
+
+    localStorage.setItem('authorValidateSuccess', JSON.stringify(this.authorValidateSuccess));
+
   }
 
 
@@ -218,6 +281,9 @@ export class AddBlogComponent implements OnInit{
       this.titleValidateSuccess = false;
       this.titleValidateError = true;
     }
+
+    localStorage.setItem('titleValidateSuccess', JSON.stringify(this.titleValidateSuccess));
+
   }
 
 
@@ -254,6 +320,9 @@ export class AddBlogComponent implements OnInit{
       this.descValidateSuccess = false;
       this.descValidateError = true;
     }
+
+    localStorage.setItem('descValidateSuccess', JSON.stringify(this.descValidateSuccess));
+
   }
 
 
@@ -274,6 +343,10 @@ export class AddBlogComponent implements OnInit{
     }else{
       this.dateValidateSuccess = false;
     }
+
+
+
+    localStorage.setItem('dateValidateSuccess', JSON.stringify(this.dateValidateSuccess));
 
   }
 
@@ -314,9 +387,17 @@ export class AddBlogComponent implements OnInit{
         this.emailDifferentError = true;
       }
     }
-  
+    localStorage.setItem('emailValidateSuccess', JSON.stringify(this.emailValidateSuccess));
+
   }
   
+
+  //categories input
+  isCategoriesVisible = false;
+
+  toggleCategories() {
+    this.isCategoriesVisible = !this.isCategoriesVisible;
+  }
 
 
 

@@ -5,6 +5,10 @@
     </figure>
 
     <button *ngIf="!isAuthed" (click)="openModal()">შესვლა</button>
-    <button *ngIf="isAuthed" routerLink="/addBlog">დაამატე ბლოგი</button>
+    <div *ngIf="isAuthed">
+      <button routerLink="/addBlog">დაამატე ბლოგი</button>
+      <button routerLink="/" (click)="logout()">გასვლა</button>
+    </div>
+
   </nav>
 </header>
