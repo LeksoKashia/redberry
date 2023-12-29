@@ -12,7 +12,7 @@ export class BlogsService {
 
 
   private apiUrl = 'https://api.blog.redberryinternship.ge/api';
-  private token = '09e7fdf907bc3fcfb7a3b13c1f183759f5b64b00b2fb89c7be8437a64b3ae10d';
+  private token = 'd67b05cbf32fe0f09b68a592abf5b7606fb3fdff837a417a94bae9bbf3635186';
 
 
   constructor(private http: HttpClient) {}
